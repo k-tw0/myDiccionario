@@ -1,0 +1,866 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
+package FORMS;
+
+import UML.Dictionary;
+import UML.MenuDictionary;
+
+import CONSULTS.C_dictionary;
+import CONSULTS.C_menuDictionary;
+
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+
+
+/**
+ *
+ * @author franco
+ */
+public class threeViewProject extends javax.swing.JFrame {
+    
+    String[] columnas = {"id Dic", "Name Dic", "Version"};
+    String[] columnas2 = { "id Dic", "Name Menu",  "id Menu"};
+    
+    DefaultTableModel modelo;
+    DefaultTableModel modelo2;
+    
+    C_menuDictionary operationMenuDic = new C_menuDictionary();
+    C_dictionary operationDic = new C_dictionary();
+    
+    List<Dictionary> data = new ArrayList<>();
+    List<MenuDictionary> data2 = new ArrayList<>();
+    
+    Dictionary umlDic = new Dictionary();
+    MenuDictionary umlMenuDic = new MenuDictionary();
+    
+    public void cargarTabla() {
+        
+        tablaDatos.getTableHeader().setReorderingAllowed(false);
+        this.modelo.setRowCount(0);
+        data.clear();
+        data = (List<Dictionary>) operationDic.__SelectObject(null);
+        Object[] obj = new Object[3];
+        for (Dictionary fila : data) {
+            obj[0] = fila.getIdDic();
+            obj[1] = fila.getNombreDic();
+            obj[2] = fila.getVersionDic();
+            
+            this.modelo.addRow(obj);
+        }
+        this.tablaDatos.setModel(modelo);
+        
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+
+        tablaDatos.getColumnModel().getColumn(0).setCellRenderer(tcr); 
+        tablaDatos.getColumnModel().getColumn(2).setCellRenderer(tcr);
+    }
+    
+    public void cargarTablaMenus(){
+        tablaMenus.getTableHeader().setReorderingAllowed(false);
+        this.modelo2.setRowCount(0);
+        data2.clear();
+        String text=txtID.getText();
+        
+        data2 = (List<MenuDictionary>) operationMenuDic.__SelectObject(text);
+        Object[] obj = new Object[3];
+        for (MenuDictionary fila : data2) {
+            obj[0] = fila.getIdDic().getIdDic();
+            obj[1] = fila.getNombreMenu();
+            obj[2] = fila.getIdMenu();
+            
+            this.modelo2.addRow(obj);
+        }
+        this.tablaMenus.setModel(modelo2);
+        
+         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+
+        tablaMenus.getColumnModel().getColumn(0).setCellRenderer(tcr); 
+        tablaMenus.getColumnModel().getColumn(2).setCellRenderer(tcr); 
+    }
+    
+    public void limpiar() {
+        this.txtID.setText("");
+        this.txtTitleDic.setText("");
+        this.txtVersionDic.setText("");
+        btnModify.setEnabled(false);
+        btnDelete.setEnabled(false);
+        btnNew.setEnabled(false);
+        btnSave.setEnabled(true);
+        
+        //BTNS de menus de diccionarios
+        btnAdd.setEnabled(false);
+        btnNew2.setEnabled(false);
+        btnModificarMenu.setEnabled(false);
+        btnDelete2.setEnabled(false);
+        
+        //Resetear tabla para evitar bugs
+        modelo2.setRowCount(0);
+    }
+    public void activeEdition() {
+        btnSave.setEnabled(false);
+        btnModify.setEnabled(true);
+        btnDelete.setEnabled(true);
+        btnNew.setEnabled(true);
+        
+        txtAddMenu.setText("");
+        txtIDMenu.setText("");
+    }
+    public void enabledEditionMenu(){
+        btnAdd.setEnabled(false);
+        btnNew2.setEnabled(true);
+        btnModificarMenu.setEnabled(true);
+        btnDelete2.setEnabled(true);
+    }
+    
+    public void disaibleEdition(){
+        txtAddMenu.setText("");
+        txtIDMenu.setText("");
+        btnAdd.setEnabled(true);
+        btnNew2.setEnabled(false);
+        btnModificarMenu.setEnabled(false);
+        btnDelete2.setEnabled(false);
+    }
+    public threeViewProject() {
+        this.modelo = new DefaultTableModel(columnas, 0) {
+            @Override
+            public boolean isCellEditable(int filas, int columnas) {
+                return columnas == 3;
+            }
+        };
+         this.modelo2 = new DefaultTableModel(columnas2,0) {
+            @Override
+            public boolean isCellEditable(int filas, int columnas) {
+                return columnas == 3;
+            }
+        };
+        initComponents();
+        setLocationRelativeTo(null);
+        cargarTabla();
+        
+    }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jSpinner1 = new javax.swing.JSpinner();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jPanel11 = new javax.swing.JPanel();
+        txtIDMenu = new javax.swing.JTextField();
+        jPanel12 = new javax.swing.JPanel();
+        txtAddMenu = new javax.swing.JTextField();
+        btnAdd = new javax.swing.JButton();
+        btnModificarMenu = new javax.swing.JButton();
+        btnNew2 = new javax.swing.JButton();
+        btnDelete2 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaDatos = new javax.swing.JTable();
+        btnVolver = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablaMenus = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel10 = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        txtTitleDic = new javax.swing.JTextField();
+        btnSave = new javax.swing.JButton();
+        txtVersionDic = new javax.swing.JTextField();
+        btnNew = new javax.swing.JButton();
+        btnModify = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
+        jPanel7 = new javax.swing.JPanel();
+        txtID = new javax.swing.JTextField();
+        jPanel8 = new javax.swing.JPanel();
+        jPanel9 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(0, 0, 51));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Fecha: ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Liberation Sans", 0, 15), new java.awt.Color(255, 255, 255))); // NOI18N
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel2.setBackground(new java.awt.Color(0, 0, 51));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("aakar", 0, 15), new java.awt.Color(255, 255, 255))); // NOI18N
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel5.setBackground(new java.awt.Color(51, 0, 51));
+        jPanel5.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel5.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 227, -1, -1));
+
+        jPanel11.setBackground(new java.awt.Color(51, 0, 51));
+        jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ID", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Liberation Sans", 1, 15), new java.awt.Color(255, 255, 255))); // NOI18N
+        jPanel11.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        txtIDMenu.setEditable(false);
+        txtIDMenu.setBackground(new java.awt.Color(0, 51, 153));
+        txtIDMenu.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
+        txtIDMenu.setForeground(new java.awt.Color(255, 255, 255));
+        txtIDMenu.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jPanel11.add(txtIDMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 40, -1));
+
+        jPanel5.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 60, 60));
+
+        jPanel12.setBackground(new java.awt.Color(51, 0, 51));
+        jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Menu Titulo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Liberation Sans", 1, 15), new java.awt.Color(255, 255, 255))); // NOI18N
+        jPanel12.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        txtAddMenu.setBackground(new java.awt.Color(0, 0, 51));
+        txtAddMenu.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
+        txtAddMenu.setForeground(new java.awt.Color(255, 255, 255));
+        txtAddMenu.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jPanel12.add(txtAddMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 183, -1));
+
+        jPanel5.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 220, 60));
+
+        btnAdd.setBackground(new java.awt.Color(0, 0, 51));
+        btnAdd.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
+        btnAdd.setForeground(new java.awt.Color(102, 255, 153));
+        btnAdd.setText("Guardar");
+        btnAdd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAddMouseClicked(evt);
+            }
+        });
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
+        btnAdd.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnAddKeyPressed(evt);
+            }
+        });
+        jPanel5.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
+
+        btnModificarMenu.setBackground(new java.awt.Color(0, 0, 51));
+        btnModificarMenu.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
+        btnModificarMenu.setForeground(new java.awt.Color(102, 204, 255));
+        btnModificarMenu.setText("Modificar");
+        btnModificarMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnModificarMenuMouseClicked(evt);
+            }
+        });
+        btnModificarMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarMenuActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btnModificarMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 110, -1, -1));
+
+        btnNew2.setBackground(new java.awt.Color(0, 0, 51));
+        btnNew2.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
+        btnNew2.setForeground(new java.awt.Color(255, 255, 255));
+        btnNew2.setText("Nuevo");
+        btnNew2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnNew2MouseClicked(evt);
+            }
+        });
+        btnNew2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNew2ActionPerformed(evt);
+            }
+        });
+        btnNew2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnNew2KeyPressed(evt);
+            }
+        });
+        jPanel5.add(btnNew2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, -1, -1));
+
+        btnDelete2.setBackground(new java.awt.Color(0, 0, 51));
+        btnDelete2.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
+        btnDelete2.setForeground(new java.awt.Color(255, 153, 153));
+        btnDelete2.setText("Eliminar");
+        btnDelete2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnDelete2MouseClicked(evt);
+            }
+        });
+        btnDelete2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDelete2ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btnDelete2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 110, -1, -1));
+
+        jPanel2.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 530, 150));
+
+        jLabel2.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Editor  de carpetas disponibles");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 20, -1, -1));
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 450, 550, 230));
+
+        jPanel3.setBackground(new java.awt.Color(0, 0, 51));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Lista de proyectos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Liberation Sans", 1, 15), new java.awt.Color(255, 255, 255))); // NOI18N
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tablaDatos.setBackground(new java.awt.Color(0, 0, 51));
+        tablaDatos.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        tablaDatos.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        tablaDatos.setForeground(new java.awt.Color(255, 255, 255));
+        tablaDatos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        tablaDatos.setSelectionBackground(new java.awt.Color(153, 204, 255));
+        tablaDatos.setSelectionForeground(new java.awt.Color(51, 51, 51));
+        tablaDatos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaDatosMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tablaDatos);
+
+        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 370, 270));
+
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 100, 390, 310));
+
+        btnVolver.setBackground(new java.awt.Color(0, 0, 51));
+        btnVolver.setFont(new java.awt.Font("Liberation Sans", 1, 14)); // NOI18N
+        btnVolver.setForeground(new java.awt.Color(204, 204, 255));
+        btnVolver.setText("Menu principal");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 740, 140, 40));
+
+        jPanel4.setBackground(new java.awt.Color(0, 0, 51));
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Listado de carpetas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Liberation Sans", 1, 15), new java.awt.Color(255, 255, 255))); // NOI18N
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tablaMenus.setBackground(new java.awt.Color(0, 0, 51));
+        tablaMenus.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        tablaMenus.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        tablaMenus.setForeground(new java.awt.Color(255, 255, 255));
+        tablaMenus.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        tablaMenus.setGridColor(new java.awt.Color(204, 255, 255));
+        tablaMenus.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaMenusMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tablaMenus);
+
+        jPanel4.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 370, 240));
+
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 430, 390, 280));
+
+        jLabel1.setFont(new java.awt.Font("DialogInput", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Software");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 30, 320, 60));
+
+        jPanel10.setBackground(new java.awt.Color(0, 0, 51));
+        jPanel10.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 255, 255), null));
+        jPanel10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel6.setBackground(new java.awt.Color(51, 0, 51));
+        jPanel6.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
+        jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel6.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 236, -1, -1));
+
+        txtTitleDic.setBackground(new java.awt.Color(0, 0, 51));
+        txtTitleDic.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
+        txtTitleDic.setForeground(new java.awt.Color(255, 255, 255));
+        txtTitleDic.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jPanel6.add(txtTitleDic, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, 182, -1));
+
+        btnSave.setBackground(new java.awt.Color(0, 0, 51));
+        btnSave.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
+        btnSave.setForeground(new java.awt.Color(102, 255, 153));
+        btnSave.setText("Guardar");
+        btnSave.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSaveMouseClicked(evt);
+            }
+        });
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
+        btnSave.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnSaveKeyPressed(evt);
+            }
+        });
+        jPanel6.add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
+
+        txtVersionDic.setBackground(new java.awt.Color(0, 0, 51));
+        txtVersionDic.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
+        txtVersionDic.setForeground(new java.awt.Color(255, 255, 255));
+        txtVersionDic.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jPanel6.add(txtVersionDic, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, 182, -1));
+
+        btnNew.setBackground(new java.awt.Color(0, 0, 51));
+        btnNew.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
+        btnNew.setForeground(new java.awt.Color(255, 255, 255));
+        btnNew.setText("Nuevo");
+        btnNew.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnNewMouseClicked(evt);
+            }
+        });
+        btnNew.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnNewKeyPressed(evt);
+            }
+        });
+        jPanel6.add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, -1, -1));
+
+        btnModify.setBackground(new java.awt.Color(0, 0, 51));
+        btnModify.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
+        btnModify.setForeground(new java.awt.Color(102, 204, 255));
+        btnModify.setText("Modificar");
+        btnModify.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnModifyMouseClicked(evt);
+            }
+        });
+        btnModify.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModifyActionPerformed(evt);
+            }
+        });
+        jPanel6.add(btnModify, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 110, -1, -1));
+
+        btnDelete.setBackground(new java.awt.Color(0, 0, 51));
+        btnDelete.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
+        btnDelete.setForeground(new java.awt.Color(255, 153, 153));
+        btnDelete.setText("Eliminar");
+        btnDelete.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnDeleteMouseClicked(evt);
+            }
+        });
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+        jPanel6.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 110, -1, -1));
+
+        jPanel7.setBackground(new java.awt.Color(51, 0, 51));
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ID", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Liberation Sans", 1, 15), new java.awt.Color(255, 255, 255))); // NOI18N
+        jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        txtID.setEditable(false);
+        txtID.setBackground(new java.awt.Color(0, 51, 153));
+        txtID.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        txtID.setForeground(new java.awt.Color(255, 255, 255));
+        txtID.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jPanel7.add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 37, -1));
+
+        jPanel6.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 60, 60));
+
+        jPanel8.setBackground(new java.awt.Color(51, 0, 51));
+        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Titulo Proyecto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Liberation Sans", 1, 15), new java.awt.Color(255, 255, 255))); // NOI18N
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 190, Short.MAX_VALUE)
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 35, Short.MAX_VALUE)
+        );
+
+        jPanel6.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 200, 60));
+
+        jPanel9.setBackground(new java.awt.Color(51, 0, 51));
+        jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Version", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Liberation Sans", 1, 15), new java.awt.Color(255, 255, 255))); // NOI18N
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 190, Short.MAX_VALUE)
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 35, Short.MAX_VALUE)
+        );
+
+        jPanel6.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, 200, 60));
+
+        jPanel10.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 530, 160));
+
+        jLabel3.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Editor de proyectos disponibles");
+        jPanel10.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, -1, -1));
+
+        jPanel1.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, 550, 250));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 803, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSaveMouseClicked
+        // TODO add your handling code here:
+        
+       
+    }//GEN-LAST:event_btnSaveMouseClicked
+
+    private void btnModifyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModifyMouseClicked
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_btnModifyMouseClicked
+
+    private void tablaDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaDatosMouseClicked
+        // TODO add your handling code here:
+        
+        this.txtID.setText(tablaDatos.getValueAt(
+        tablaDatos.getSelectedRow(),0).toString());
+        
+        this.txtTitleDic.setText(tablaDatos.getValueAt(
+        tablaDatos.getSelectedRow(),1).toString());
+        
+        this.txtVersionDic.setText(tablaDatos.getValueAt(
+        tablaDatos.getSelectedRow(),2).toString());
+        
+        String hoa = tablaDatos.getValueAt(tablaDatos.getSelectedRow(),0).toString();
+        
+        cargarTablaMenus();
+        activeEdition();
+        enabledEditionMenu();
+        
+    }//GEN-LAST:event_tablaDatosMouseClicked
+
+    private void btnDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeleteMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDeleteMouseClicked
+
+    private void btnNewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNewMouseClicked
+        // TODO add your handling code here:
+        limpiar();
+    }//GEN-LAST:event_btnNewMouseClicked
+
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        firstViewProject firstView = new firstViewProject();
+        firstView.setVisible(true);
+        dispose();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
+        // TODO add your handling code here:
+          if(txtTitleDic.getText().equals("") || txtVersionDic.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Hay campos incompletos");
+        }else{
+              this.umlDic.setIdDic(Integer.parseInt(this.txtID.getText()));
+            this.umlDic.setNombreDic(this.txtTitleDic.getText());
+            this.umlDic.setVersionDic(this.txtVersionDic.getText());
+            
+             int resp = JOptionPane.showConfirmDialog(null, "Estas seguro que deseas modificar el titulo del Proyecto: "+ txtTitleDic.getText()+" ?",
+                     "Aviso", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+            
+            if(resp == JOptionPane.YES_OPTION) {
+                if(operationDic.update(this.umlDic)) {
+                    JOptionPane.showMessageDialog(this, "Verifica el del titulo nombre: "+umlDic.getNombreDic() + ", en la base de datos.");
+                    cargarTabla();
+                    limpiar();
+                }else {
+                    JOptionPane.showMessageDialog(this,"No se ha modificado");
+                }
+            }
+        }
+        
+    }//GEN-LAST:event_btnModifyActionPerformed
+
+    private void tablaMenusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMenusMouseClicked
+      
+        this.txtIDMenu.setText(tablaMenus.getValueAt(
+        tablaMenus.getSelectedRow(),2).toString());
+        
+        this.txtAddMenu.setText(tablaMenus.getValueAt(
+        tablaMenus.getSelectedRow(),1).toString());
+        enabledEditionMenu();
+    }//GEN-LAST:event_tablaMenusMouseClicked
+
+    private void btnNewKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnNewKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnNewKeyPressed
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+         if(txtTitleDic.getText().equals("") || txtVersionDic.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "No debe dejar campos vacios");
+        }else{
+            this.umlDic.setNombreDic(this.txtTitleDic.getText());
+            this.umlDic.setVersionDic(this.txtVersionDic.getText());
+            
+            if(operationDic.insert(this.umlDic)) {
+                JOptionPane.showMessageDialog(this, "Registro guardado correctamente!!");
+                cargarTabla(); 
+            }else {
+                JOptionPane.showMessageDialog(this, "Error al insertar");
+            }
+        }
+    }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void btnSaveKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnSaveKeyPressed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnSaveKeyPressed
+
+    private void btnAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAddMouseClicked
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+         if(txtAddMenu.getText().equals("")
+            || txtID.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "NO DEJAR CAMPOS VACIOS Y SIN SELECCIONAR");
+        }
+        else{
+            this.umlMenuDic.setNombreMenu(this.txtAddMenu.getText());
+
+            this.umlMenuDic.setIdDic(new Dictionary(Integer.parseInt(this.txtID.getText())));
+
+            if(operationMenuDic.insert(this.umlMenuDic)) {
+                JOptionPane.showMessageDialog(this, "Registro guardado correctamente");
+                cargarTablaMenus();
+                enabledEditionMenu();
+                activeEdition();
+            }else{
+                JOptionPane.showMessageDialog(this, "No se ha guardado el registro");
+            }
+        }
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    private void btnAddKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnAddKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAddKeyPressed
+
+    private void btnNew2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNew2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnNew2MouseClicked
+
+    private void btnNew2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnNew2KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnNew2KeyPressed
+
+    private void btnModificarMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarMenuMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnModificarMenuMouseClicked
+
+    private void btnModificarMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarMenuActionPerformed
+        // TODO add your handling code here:
+        if(txtIDMenu.getText().equals("") || txtAddMenu.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Hay campos incompletos");
+        }else{
+            this.umlMenuDic.setIdMenu(Integer.parseInt(this.txtIDMenu.getText()));
+            this.umlMenuDic.setNombreMenu(this.txtAddMenu.getText());
+
+            if(operationMenuDic.update(this.umlMenuDic)) {
+                JOptionPane.showMessageDialog(this, "Se ha modificado con exito!!");
+                cargarTablaMenus();
+                
+            }else {
+                JOptionPane.showMessageDialog(this, "Ha ocurrido un error al modificar");
+            }
+        }
+    }//GEN-LAST:event_btnModificarMenuActionPerformed
+
+    private void btnDelete2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDelete2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDelete2MouseClicked
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        if(txtTitleDic.getText().equals("") || txtVersionDic.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(null, "Hay campos incompletos");
+        } else {
+          
+            this.umlDic.setIdDic(Integer.parseInt(this.txtID.getText()));
+            this.umlDic.setNombreDic(this.txtTitleDic.getText());
+            this.umlDic.setVersionDic(this.txtVersionDic.getText());
+            int resp = JOptionPane.showConfirmDialog(null, "Estas seguro que deseas eliminar el proyecto: " + umlDic.getNombreDic() +" ?",
+                     "Advertencia", JOptionPane.YES_NO_OPTION, JOptionPane.ERROR_MESSAGE);
+            
+            if(resp == JOptionPane.YES_OPTION) {
+                if(operationDic.delete(this.umlDic)) {
+                    JOptionPane.showMessageDialog(this, "El registro se ha eliminado!");
+                    cargarTabla();
+                    limpiar();
+                    activeEdition();
+                }else {
+                    JOptionPane.showMessageDialog(this,"No se ha eliminado");
+                }
+            }
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnNew2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNew2ActionPerformed
+        // TODO add your handling code here:
+        disaibleEdition();
+    }//GEN-LAST:event_btnNew2ActionPerformed
+
+    private void btnDelete2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelete2ActionPerformed
+        // TODO add your handling code here:
+          if(txtTitleDic.getText().equals("") || txtVersionDic.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(null, "Hay campos incompletos");
+        } else {
+          
+            this.umlMenuDic.setIdMenu(Integer.parseInt(this.txtIDMenu.getText()));
+            this.umlMenuDic.setNombreMenu(this.txtAddMenu.getText());
+            
+            int resp = JOptionPane.showConfirmDialog(null, "Estas seguro que deseas eliminar el proyecto: " + umlMenuDic.getNombreMenu() +" ?",
+                     "Advertencia", JOptionPane.YES_NO_OPTION, JOptionPane.ERROR_MESSAGE);
+            
+            if(resp == JOptionPane.YES_OPTION) {
+                if(operationMenuDic.delete(this.umlMenuDic)) {
+                    JOptionPane.showMessageDialog(this, "El registro se ha eliminado!");
+                    enabledEditionMenu();
+                    cargarTablaMenus();
+                }else {
+                    JOptionPane.showMessageDialog(this,"No se ha eliminado");
+                }
+            }
+        }
+    }//GEN-LAST:event_btnDelete2ActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(threeViewProject.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(threeViewProject.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(threeViewProject.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(threeViewProject.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new threeViewProject().setVisible(true);
+            }
+        });
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnDelete2;
+    private javax.swing.JButton btnModificarMenu;
+    private javax.swing.JButton btnModify;
+    private javax.swing.JButton btnNew;
+    private javax.swing.JButton btnNew2;
+    private javax.swing.JButton btnSave;
+    private javax.swing.JButton btnVolver;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSpinner jSpinner1;
+    private javax.swing.JTable tablaDatos;
+    private javax.swing.JTable tablaMenus;
+    private javax.swing.JTextField txtAddMenu;
+    private javax.swing.JTextField txtID;
+    private javax.swing.JTextField txtIDMenu;
+    private javax.swing.JTextField txtTitleDic;
+    private javax.swing.JTextField txtVersionDic;
+    // End of variables declaration//GEN-END:variables
+}

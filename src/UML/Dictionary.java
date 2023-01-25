@@ -2,27 +2,27 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Datos;
+package UML;
 
 /**
  *
  * @author franco
  */
-public class Datos {
+public class Dictionary {
     
     
     private int idDic;
     private String nombreDic;
     private String versionDic;
     
-    public Datos(int idDiccionario) {
+    public Dictionary(int idDiccionario) {
         this.idDic=idDiccionario;
     }
     
-    public Datos(){
+    public Dictionary(){
     }
     
-    public Datos(int idDic, String nombreDic, String versionDic) {
+    public Dictionary(int idDic, String nombreDic, String versionDic) {
         this.idDic = idDic;
         this.nombreDic = nombreDic;
         this.versionDic = versionDic;

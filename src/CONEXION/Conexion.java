@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Conex;
+package CONEXION;
 
 /**
  *
@@ -19,7 +19,7 @@ public class Conexion {
         this.driver="com.mysql.cj.jdbc.Driver";
         this.url="jdbc:mysql://localhost:3306/"+db;
         this.usuario="root";
-        this.clave="password";
+        this.clave="franco";
     }
     
     public Conexion(String driver, String url, String usuario, String clave) {

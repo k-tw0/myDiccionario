@@ -2,34 +2,39 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Datos;
+package UML;
 
 /**
  *
  * @author franco
  */
-public class Vvisual {
-    private int idCodigo;
-    private String codex;
-    private ItemsMenusDatos idMenu;
+public class CodexMenuDic {
     
-    public Vvisual(){
+    private int idCodigo;
+    private String txtCodex;
+    private MenuDictionary idMenu;
+    
+    public CodexMenuDic(int idCodigo){
+        this.idCodigo=idCodigo;
     }
     
-    public Vvisual(int idCodigo,
-            String codex,
-            ItemsMenusDatos idMenu) {
+    public CodexMenuDic(){
+    }
+    
+    public CodexMenuDic(int idCodigo,
+            String txtCodex,
+            MenuDictionary idMenu) {
         
             this.idCodigo = idCodigo;
-            this.codex = codex;
+            this.txtCodex = txtCodex;
             this.idMenu = idMenu;
     }
     
-    public ItemsMenusDatos getIdMenu() {
+    public MenuDictionary getIdMenu() {
         return idMenu;
     }
 
-    public void setIdMenu(ItemsMenusDatos idMenu) {
+    public void setIdMenu(MenuDictionary idMenu) {
         this.idMenu = idMenu;
     }
 
@@ -42,11 +47,11 @@ public class Vvisual {
     }
 
     public String getCodex() {
-        return codex;
+        return txtCodex;
     }
 
-    public void setCodex(String codex) {
-        this.codex = codex;
+    public void setCodex(String txtCodex) {
+        this.txtCodex = txtCodex;
     }
     
 }

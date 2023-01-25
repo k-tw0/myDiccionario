@@ -2,40 +2,40 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Datos;
+package UML;
 
 
 /**
  *
  * @author franco
  */
-public class ItemsMenusDatos {
+public class MenuDictionary {
     
     private int idMenu;
     private String nombreMenu;
-    private Datos idDic;
+    private Dictionary idDic;
     
-    public ItemsMenusDatos(int idMenu){
+    public MenuDictionary(int idMenu){
         this.idMenu=idMenu;
     }
     
-    public ItemsMenusDatos(){
+    public MenuDictionary(){
     }
     
-    public ItemsMenusDatos(int idMenu,
+    public MenuDictionary(int idMenu,
             String nombreMenu,
-            Datos idDic) {
+            Dictionary idDic) {
         
             this.idMenu = idMenu;
             this.nombreMenu = nombreMenu;
             this.idDic = idDic;
     }
     
-    public Datos getIdDic() {
+    public Dictionary getIdDic() {
         return idDic;
     }
 
-    public void setIdDic(Datos idDic) {
+    public void setIdDic(Dictionary idDic) {
         this.idDic = idDic;
     }
 
